@@ -54,7 +54,7 @@ export default App;
 
 ## Props
 
-```
+```ts
 textAlign: 'left' | 'center' | 'right'
 isSelected: boolean
 fontSize: 'tiny' | 'small' | 'medium' | 'large'
