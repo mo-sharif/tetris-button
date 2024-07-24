@@ -33,9 +33,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          git config --global user.name "mo-sharif"
-          git config --global user.email "mo@codelit.io"
-          git checkout main
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout release
           npm version patch -m "ci: bump version to %s"
           git push --follow-tags
 
