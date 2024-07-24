@@ -1,10 +1,13 @@
 ## Tetris Button
 
-[Tetris Button](https://images.ctfassets.net/d9vefg82sy0n/1qmaAAwp6NUpozEgmPbtQ9/5295e42b41433ad0d84fc36546b01507/Screenshot_2024-07-23_173556.png)
+![TetrisButton Screenshot](https://images.ctfassets.net/d9vefg82sy0n/1qmaAAwp6NUpozEgmPbtQ9/5295e42b41433ad0d84fc36546b01507/Screenshot_2024-07-23_173556.png)
 
 The `TetrisButton` component is a customizable button styled to have a retro pixelated look, inspired by classic video game aesthetics. It allows users to specify various font properties and includes interactive effects for hover and click actions.
 
-[Tetris Button Demo Video](https://videos.ctfassets.net/d9vefg82sy0n/2UQKwNvURhC2RP3ZcvbpnD/3111b3a1f57b9ce9a92fa8f8e9a0108e/Recording_2024-07-23_172825.mp4)
+<video width="600" controls>
+  <source src="https://videos.ctfassets.net/d9vefg82sy0n/2UQKwNvURhC2RP3ZcvbpnD/3111b3a1f57b9ce9a92fa8f8e9a0108e/Recording_2024-07-23_172825.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ## CSS Styles
 
