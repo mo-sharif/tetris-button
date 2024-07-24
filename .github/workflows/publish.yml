@@ -1,42 +1,42 @@
-name: Build, Test, and Publish
+name: Publish to NPM
 
 on:
   push:
     branches:
-      - release
+      - main
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-      - name: Set up Node.js
+      - name: Use Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "22.2.0"
-          registry-url: "https://registry.npmjs.org/"
+          node-version: '22.2.0'
+          registry-url: 'https://registry.npmjs.org'
 
-      - name: Install dependencies
-        run: npm install
+      - run: npm install
+      - run: npm run build
+      - run: npm test
 
-      - name: Run tests
-        run: npm test
+      - name: Stage changes
+        run: git add -A
 
-      - name: Build the package
-        run: npm run build
-
-      - name: Bump version and push tag
-        id: tag_version
+      - name: Commit changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "ci: commit changes from build"
+
+      - name: Bump version and push tags
+        run: |
           npm version patch -m "ci: bump version to %s"
           git push --follow-tags
 
-      - name: Publish to npm
-        run: npm publish
+      - name: Publish to NPM
+        run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
