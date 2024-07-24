@@ -8,6 +8,7 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+
     steps:
       # Checkout project repository
       - name: Checkout
@@ -39,7 +40,6 @@ jobs:
           git config --global user.name "GitHub Actions"
 
       # Bump package version
-      # Use tag latest
       - name: Bump release version
         if: startsWith(github.event.inputs.release-type, 'pre') != true
         run: |
@@ -49,11 +49,10 @@ jobs:
           RELEASE_TYPE: ${{ github.event.inputs.release-type }}
 
       # Bump package pre-release version
-      # Use tag beta for pre-release versions
       - name: Bump pre-release version
         if: startsWith(github.event.inputs.release-type, 'pre')
         run: |
-          echo "NEW_VERSION=$(npm --no-git-tag-version --preid=beta version $RELEASE_TYPE
+          echo "NEW_VERSION=$(npm --no-git-tag-version --preid=beta version $RELEASE_TYPE)" >> $GITHUB_ENV
           echo "RELEASE_TAG=beta" >> $GITHUB_ENV
         env:
           RELEASE_TYPE: ${{ github.event.inputs.release-type }}
@@ -76,7 +75,7 @@ jobs:
 
       # Publish version to public repository
       - name: Publish
-        run: yarn publish --verbose --access public --tag ${{ env.RELEASE_TAG }}
+        run: npm publish --verbose --access public --tag ${{ env.RELEASE_TAG }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
