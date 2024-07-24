@@ -8,5 +8,5 @@ export interface TetrisButtonProps {
   lineHeight?: 'normal' | '1.2' | '1.5' | '2' | '3.2';
   backgroundColor?: string;
   children: React.ReactNode;
-  onClick?: (e?: any) => void;
+  onClick?: (e?: unknown) => void;
 }
