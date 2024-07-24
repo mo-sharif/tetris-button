@@ -4,12 +4,12 @@ import TetrisButton from './TetrisButton';
 
 describe('TetrisButton', () => {
   test('renders with correct text', () => {
-    render(<TetrisButton>Click Me</TetrisButton>);
+    render(<TetrisButton backgroundColor="#ffffff">Click Me</TetrisButton>);
     expect(screen.getByText('Click Me')).toBeInTheDocument();
   });
 
   test('changes background color on hover', () => {
-    render(<TetrisButton>Hover Me</TetrisButton>);
+    render(<TetrisButton backgroundColor="#ffffff">Hover Me</TetrisButton>);
     const button = screen.getByText('Hover Me');
     fireEvent.mouseOver(button);
     expect(button).toHaveStyle('box-shadow: 0 3px #b0b0b0,0 -1px #fff inset');
@@ -17,7 +17,7 @@ describe('TetrisButton', () => {
 
   test('calls onClick handler', () => {
     const handleClick = jest.fn();
-    render(<TetrisButton onClick={handleClick}>Click Me</TetrisButton>);
+    render(<TetrisButton backgroundColor="#ffffff" onClick={handleClick}>Click Me</TetrisButton>);
     fireEvent.click(screen.getByText('Click Me'));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
@@ -30,6 +30,7 @@ describe('TetrisButton', () => {
         fontWeight="bold"
         letterSpacing="0.1em"
         lineHeight="1.5"
+        backgroundColor="#ffffff"
       >
         Custom Font
       </TetrisButton>
