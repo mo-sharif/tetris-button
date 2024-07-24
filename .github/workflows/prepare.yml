@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build, Test, and lint
 
 on:
   push:
@@ -16,11 +16,17 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22.2.0"
-          registry-url: "https://registry.npmjs.org/"
+          node-version: '22.2.0'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run format
+        run: npm run format --check
 
       - name: Run tests
         run: npm test
