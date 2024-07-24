@@ -12,8 +12,7 @@
     "build-storybook": "storybook build",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,md}'",
-    "pretest": "npm run lint && npm run format",
-    "prepare": "husky install"
+    "pretest": "npm run lint && npm run format"
   },
   "files": [
     "dist"
