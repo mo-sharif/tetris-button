@@ -83,7 +83,9 @@ const pixelStyle = css<{ backgroundColor: string }>`
   }
 `;
 
-const StyledTetrisButton = styled.button<TetrisButtonProps & { backgroundColor: string }>`
+const StyledTetrisButton = styled.button<
+  TetrisButtonProps & { backgroundColor: string }
+>`
   background-color: ${(props) => props.theme.backgroundColor};
   color: #333;
   border: none;

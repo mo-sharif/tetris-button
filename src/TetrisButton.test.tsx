@@ -17,7 +17,11 @@ describe('TetrisButton', () => {
 
   test('calls onClick handler', () => {
     const handleClick = jest.fn();
-    render(<TetrisButton backgroundColor="#ffffff" onClick={handleClick}>Click Me</TetrisButton>);
+    render(
+      <TetrisButton backgroundColor="#ffffff" onClick={handleClick}>
+        Click Me
+      </TetrisButton>,
+    );
     fireEvent.click(screen.getByText('Click Me'));
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
@@ -33,7 +37,7 @@ describe('TetrisButton', () => {
         backgroundColor="#ffffff"
       >
         Custom Font
-      </TetrisButton>
+      </TetrisButton>,
     );
     const button = screen.getByText('Custom Font');
     expect(button).toHaveStyle('font-size: 2em');
