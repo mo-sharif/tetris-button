@@ -1,15 +1,19 @@
 {
   "name": "tetris-button",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "Tetris style react button component",
-  "main": "dist/TetrisButton.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest"
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/tetris-button.git"
+    "url": "https://github.com/mo-sharif/Tetris-Button"
   },
   "keywords": [
     "tetris",
