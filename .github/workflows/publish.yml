@@ -1,4 +1,4 @@
-name: Publish to NPM
+name: Build, Test, and Publish
 
 on:
   push:
@@ -6,37 +6,40 @@ on:
       - release
 
 jobs:
-  build-and-publish:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Use Node.js
-        uses: actions/setup-node@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '22.2.0'
-          registry-url: 'https://registry.npmjs.org'
+          node-version: "22.2.0"
+          registry-url: "https://registry.npmjs.org/"
 
-      - run: npm install
-      - run: npm run build
-      - run: npm test
+      - name: Install dependencies
+        run: npm install
 
-      - name: Stage changes
-        run: git add -A
+      - name: Run tests
+        run: npm test
 
-      - name: Commit changes
+      - name: Build the package
+        run: npm run build
+
+      - name: Bump version and push tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git commit -m "ci: commit changes from build"
-
-      - name: Bump version and push tags
-        run: |
+          git checkout main
           npm version patch -m "ci: bump version to %s"
           git push --follow-tags
 
-      - name: Publish to NPM
-        run: npm publish --access public
+      - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish
