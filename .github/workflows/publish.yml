@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "22.2.0"
           registry-url: "https://registry.npmjs.org/"
@@ -30,14 +30,10 @@ jobs:
 
       - name: Bump version and push tags
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout release
           npm version patch -m "ci: bump version to %s"
-          git push --follow-tags
+          npm publish --access public
 
       - name: Publish to npm
         env:

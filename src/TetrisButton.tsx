@@ -1,17 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled, { css } from 'styled-components';
-
-interface TetrisButtonProps {
-  textAlign?: 'left' | 'center' | 'right';
-  isSelected?: boolean;
-  fontSize?: 'tiny' | 'small' | 'medium' | 'large';
-  fontFamily?: string;
-  fontWeight?: 'normal' | 'bold' | 'bolder' | 'lighter' | number;
-  letterSpacing?: string;
-  lineHeight?: 'normal' | '1.2' | '1.5' | '2' | '3.2';
-  children: React.ReactNode;
-  onClick?: (e?: any) => void;
-}
+import { TetrisButtonProps } from './interface';
 
 const getFontSize = (size?: TetrisButtonProps['fontSize']) => {
   switch (size) {
@@ -40,7 +29,7 @@ const colors = [
 
 const getRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
 
-const pixelStyle = css`
+const pixelStyle = css<{ backgroundColor: string }>`
   position: relative;
   width: auto;
   padding: 0.5em 1em;
@@ -60,7 +49,7 @@ const pixelStyle = css`
     left: -4px;
     width: 10px;
     height: 10px;
-    background: #1b1b1b;
+    background: ${(props) => props.backgroundColor};
     border-bottom: solid 4px #000;
     border-right: solid 4px #000;
   }
@@ -72,7 +61,7 @@ const pixelStyle = css`
     right: -4px;
     width: 10px;
     height: 10px;
-    background: #1b1b1b;
+    background: ${(props) => props.backgroundColor};
     border-top: solid 4px #000;
     border-left: solid 4px #000;
   }
@@ -94,7 +83,7 @@ const pixelStyle = css`
   }
 `;
 
-const StyledTetrisButton = styled.button<TetrisButtonProps>`
+const StyledTetrisButton = styled.button<TetrisButtonProps & { backgroundColor: string }>`
   background-color: ${(props) => props.theme.backgroundColor};
   color: #333;
   border: none;
@@ -107,12 +96,6 @@ const StyledTetrisButton = styled.button<TetrisButtonProps>`
   letter-spacing: ${(props) => props.letterSpacing || 'normal'};
   line-height: ${(props) => props.lineHeight || 'normal'};
   ${pixelStyle};
-
-  ${(props) =>
-    props.isSelected &&
-    css`
-      background-color: ${getRandomColor()};
-    `}
 `;
 
 const TetrisButton: React.FC<TetrisButtonProps> = (props) => {
@@ -125,6 +108,7 @@ const TetrisButton: React.FC<TetrisButtonProps> = (props) => {
   return (
     <StyledTetrisButton
       {...props}
+      backgroundColor={props.backgroundColor || backgroundColor}
       theme={{
         backgroundColor,
         hoverColor: getRandomColor(),

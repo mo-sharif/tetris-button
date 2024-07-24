@@ -1,6 +1,5 @@
 ## Tetris Button
 
-
 ![TetrisButton Screenshot](https://images.ctfassets.net/d9vefg82sy0n/1qmaAAwp6NUpozEgmPbtQ9/5295e42b41433ad0d84fc36546b01507/Screenshot_2024-07-23_173556.png)
 
 The `TetrisButton` component is a customizable button styled to have a retro pixelated look, inspired by classic video game aesthetics. It allows users to specify various font properties and includes interactive effects for hover and click actions.
@@ -22,6 +21,14 @@ Custom Font Properties: Users can customize the font properties such as size, fa
 
 ```sh
 npm install tetris-button
+```
+
+## Storybook
+
+To run Storybook for this component, use the following command:
+
+```bash
+npm run storybook
 ```
 
 ## Usage
@@ -55,6 +62,7 @@ fontFamily: string
 fontWeight: 'normal' | 'bold' | 'bolder' | 'lighter' | number
 letterSpacing: string
 lineHeight: 'normal' | '1.2' | '1.5' | '2' | '3.2'
+backgroundColor?: string;
 children: React.ReactNode
 onClick: (e?: any) => void
 ```
