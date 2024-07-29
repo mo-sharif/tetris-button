@@ -1,7 +1,7 @@
 {
   "author": "Mo Sharif",
   "name": "tetris-button",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Tetris style react button component",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
