@@ -17,7 +17,7 @@ const getFontSize = (size?: TetrisButtonProps['fontSize']) => {
   }
 };
 
-const colors = [
+const defaultColors = [
   '#ff77aa', // retro-pink
   '#77ddff', // retro-blue
   '#77ff77', // retro-green
@@ -27,9 +27,10 @@ const colors = [
   '#ffaa77', // retro-orange
 ];
 
-const getRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
+const getRandomColor = (colors: string[]) =>
+  colors[Math.floor(Math.random() * colors.length)];
 
-const pixelStyle = css<{ backgroundColor: string }>`
+const pixelStyle = css<{ $backgroundColor: string }>`
   position: relative;
   width: auto;
   padding: 0.5em 1em;
@@ -49,7 +50,7 @@ const pixelStyle = css<{ backgroundColor: string }>`
     left: -4px;
     width: 10px;
     height: 10px;
-    background: ${(props) => props.backgroundColor};
+    background: ${(props) => props.$backgroundColor};
     border-bottom: solid 4px #000;
     border-right: solid 4px #000;
   }
@@ -61,7 +62,7 @@ const pixelStyle = css<{ backgroundColor: string }>`
     right: -4px;
     width: 10px;
     height: 10px;
-    background: ${(props) => props.backgroundColor};
+    background: ${(props) => props.$backgroundColor};
     border-top: solid 4px #000;
     border-left: solid 4px #000;
   }
@@ -84,7 +85,7 @@ const pixelStyle = css<{ backgroundColor: string }>`
 `;
 
 const StyledTetrisButton = styled.button<
-  TetrisButtonProps & { backgroundColor: string }
+  TetrisButtonProps & { $backgroundColor: string }
 >`
   background-color: ${(props) => props.theme.backgroundColor};
   color: #333;
@@ -101,19 +102,22 @@ const StyledTetrisButton = styled.button<
 `;
 
 const TetrisButton: React.FC<TetrisButtonProps> = (props) => {
-  const [backgroundColor, setBackgroundColor] = useState(getRandomColor());
+  const colors = props.colors || defaultColors;
+  const [backgroundColor, setBackgroundColor] = useState(
+    getRandomColor(colors),
+  );
 
   useEffect(() => {
-    setBackgroundColor(getRandomColor());
-  }, []);
+    setBackgroundColor(getRandomColor(colors));
+  }, [colors]);
 
   return (
     <StyledTetrisButton
       {...props}
-      backgroundColor={props.backgroundColor || backgroundColor}
+      $backgroundColor={props.backgroundColor || backgroundColor}
       theme={{
         backgroundColor,
-        hoverColor: getRandomColor(),
+        hoverColor: getRandomColor(colors),
       }}
     >
       {props.children}
