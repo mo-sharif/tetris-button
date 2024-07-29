@@ -38,6 +38,7 @@ import TetrisButton from "tetris-button";
 
 const App = () => (
   <TetrisButton
+    colors={["#ff77aa", "#77ddff", "#77ff77"]}
     fontSize="medium"
     fontFamily="Arial, sans-serif"
     fontWeight="bold"
@@ -55,14 +56,15 @@ export default App;
 ## Props
 
 ```ts
-textAlign: 'left' | 'center' | 'right'
-isSelected: boolean
-fontSize: 'tiny' | 'small' | 'medium' | 'large'
-fontFamily: string
-fontWeight: 'normal' | 'bold' | 'bolder' | 'lighter' | number
-letterSpacing: string
-lineHeight: 'normal' | '1.2' | '1.5' | '2' | '3.2'
-backgroundColor?: string;
-children: React.ReactNode
-onClick: (e?: any) => void
+  textAlign?: 'left' | 'center' | 'right';
+  isSelected?: boolean;
+  fontSize?: 'tiny' | 'small' | 'medium' | 'large';
+  fontFamily?: string;
+  fontWeight?: 'normal' | 'bold' | 'bolder' | 'lighter' | number;
+  letterSpacing?: string;
+  lineHeight?: 'normal' | '1.2' | '1.5' | '2' | '3.2';
+  backgroundColor?: string;
+  children: React.ReactNode;
+  onClick?: (e?: unknown) => void;
+  colors?: string[];
 ```

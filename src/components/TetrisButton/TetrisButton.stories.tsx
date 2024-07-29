@@ -38,6 +38,9 @@ export default {
     backgroundColor: {
       control: { type: 'color' },
     },
+    colors: {
+      control: { type: 'object' },
+    },
   },
 } as Meta;
 
@@ -60,21 +63,24 @@ Default.args = {
 export const Selected = Template.bind({});
 Selected.args = {
   ...Default.args,
-  fontFamily: 'monospace',
   isSelected: true,
 };
 
 export const LargeText = Template.bind({});
 LargeText.args = {
   ...Default.args,
-  fontFamily: 'monospace',
   fontSize: 'large',
 };
 
 export const CustomSpacing = Template.bind({});
 CustomSpacing.args = {
   ...Default.args,
-  fontFamily: 'monospace',
   letterSpacing: '0.1em',
   lineHeight: '1.5',
+};
+
+export const CustomColors = Template.bind({});
+CustomColors.args = {
+  ...Default.args,
+  colors: ['#ff77aa', '#77ddff', '#77ff77', '#ffff77'],
 };
