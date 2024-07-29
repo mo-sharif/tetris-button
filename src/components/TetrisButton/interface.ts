@@ -9,5 +9,5 @@ export interface TetrisButtonProps {
   backgroundColor?: string;
   children: React.ReactNode;
   onClick?: (e?: unknown) => void;
-  colors?: string[]; // Optional colors array
+  colors?: string[];
 }
